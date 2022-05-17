@@ -33,9 +33,11 @@ export const postTasks = async (req,res)=>{
 export const putTasks = async(req,res)=>{
 
     try {
+        let data= []
         const updateTask = await Tasks.findByIdAndUpdate(req.params.id,req.body,{new:true})
         if(!updateTask) return await res.sendStatus(400)
-       await res.send(updateTask)
+       data = updateTask;
+       await res.send(data)
     } catch (error) {
         return res.status(500).json({"message":error.message})
     }
